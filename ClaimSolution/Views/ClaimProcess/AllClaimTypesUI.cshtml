@@ -1,0 +1,62 @@
+﻿@using Claims.Services;
+
+@{
+    ViewBag.Title = "All Active and Inactive LossTypes";
+}
+
+<div>
+    <div class="form-group">
+        <div id="dvTblLossTypes" class="mainDiv box-body" width="100%">
+            <table id="tblLossTypes" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>LossTypeId</th>
+                        <th>LossTypeCode</th>
+                        <th>LossTypeDescription</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $.noConflict();
+
+        $.ajax({
+            url: "@CommonUtils.ApplicationUrl"+"ClaimProcess/GetAllLossTypes",
+            method: 'Get',
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $("#tblLossTypes").dataTable({
+                        data: data,
+                        "paging": true,
+                        "searching": true,
+                        "sorting": true,
+                        columns: [
+                            { "data": "LossTypeId", "LossTypeId": "LossTypeId", 'targets': 0, "width": "10%" },
+                            { "data": "LossTypeCode", "name": "LossTypeCode", 'targets': 1, "width": "10%" },
+                            { "data": "LossTypeDescription", "name": "LossTypeDescription", "visible": true, 'targets': 2, "width": "60%" },
+                            { "data": "Status", "name": "Status", "visible": true, 'targets': 3, "width": "10%" }
+                        ]
+                    });
+
+                }
+                else {
+                    alert("error occured while processing request");
+                }
+            }
+        });
+    });
+
+
+</script>
+

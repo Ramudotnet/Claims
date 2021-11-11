@@ -1,0 +1,60 @@
+﻿@using Claims.Core.Domain
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("HomePage", "Index", "ClaimProcess", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.ActionLink("ViewLossTypes", "GetAllClaimTypesUI", "ClaimProcess", new { area = "" }, null)</li>
+
+                    <li>@Html.ActionLink("LogOut", "SmartLogOut", "Account", new { area = "" }, null)</li>
+
+                    @{
+                        var _uobj = Session["userInfo"] as LoginUserResult;
+
+                        if (_uobj != null)
+                        {
+                            <li>@Html.ActionLink("Hello   :: " + @_uobj.UserFullName, "", "", new { area = "" }, null)</li>
+                        }
+                    }
+
+                </ul>
+
+            </div>
+            <div style="height: 100%;background-color: #49eb14;margin-left: 70%;margin-top: -3%;text-decoration: solid;">
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        @RenderBody()
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

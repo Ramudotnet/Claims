@@ -1,0 +1,1302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InterviewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.Activities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Activities">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ClaimReference" />
+            <PropertyRef Name="ActivityTypeCode" />
+            <PropertyRef Name="ActivityDetails" />
+            <PropertyRef Name="ActivityDateTime" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimReference" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LegacyActivityId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActivityTypeCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ActivityDetails" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ActivityDateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PartyId" Type="int" />
+          <Property Name="PartyType" Type="char" MaxLength="4" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+          <Property Name="DeletedDate" Type="datetime2" Precision="7" />
+          <Property Name="DeletedId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.Claims' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Claims">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Reference" />
+            <PropertyRef Name="LossAdjusterId" />
+            <PropertyRef Name="LossDate" />
+            <PropertyRef Name="LossTypeId" />
+            <PropertyRef Name="Closed" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LossAdjusterId" Type="int" Nullable="false" />
+          <Property Name="Policy" Type="nvarchar" MaxLength="100" />
+          <Property Name="LossDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LossTypeId" Type="int" Nullable="false" />
+          <Property Name="LossLoc" Type="nvarchar" MaxLength="200" />
+          <Property Name="Closed" Type="bit" Nullable="false" />
+          <Property Name="ClosedDate" Type="datetime2" Precision="7" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.Email' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="LegacyActivityId" />
+            <PropertyRef Name="SentBy" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LegacyActivityId" Type="int" Nullable="false" />
+          <Property Name="RecipientTo" Type="varchar" MaxLength="500" />
+          <Property Name="Subject" Type="varchar" MaxLength="500" />
+          <Property Name="BodyText" Type="ntext" />
+          <Property Name="SentBy" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="SentTime" Type="datetime" />
+          <Property Name="PartyTypeCode" Type="char" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.FileActivityLinks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FileActivityLinks">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="FileId" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileId" Type="int" Nullable="false" />
+          <Property Name="ActivityId" Type="int" />
+          <Property Name="LegacyActivityId" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+          <Property Name="DeletedDate" Type="datetime2" Precision="7" />
+          <Property Name="DeletedId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.Files' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PublicId" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="BlobName" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PublicId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BlobName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+          <Property Name="DeletedDate" Type="datetime2" Precision="7" />
+          <Property Name="DeletedId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.LegacyActivities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LegacyActivities">
+          <Key>
+            <PropertyRef Name="ClaimReference" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ActivityDate" />
+            <PropertyRef Name="CompletedBy" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="ClaimReference" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="CategoryInd" Type="char" MaxLength="1" />
+          <Property Name="CompletedBy" Type="int" Nullable="false" />
+          <Property Name="AdhocOrPartyInd" Type="char" MaxLength="1" />
+          <Property Name="PartyId" Type="int" />
+          <Property Name="AdhocPartyId" Type="int" />
+          <Property Name="TypeCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Detail" Type="varchar" MaxLength="1000" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="DeletedId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.LegacyActivityCategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LegacyActivityCategories">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.LegacyActivityTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LegacyActivityTypes">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="CategoryCode" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="CategoryCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LossTypes">
+          <Key>
+            <PropertyRef Name="LossTypeId" />
+          </Key>
+          <Property Name="LossTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LossTypeCode" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="LossTypeDescription" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.PartyClaimRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PartyClaimRole">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartyTypeCode" />
+            <PropertyRef Name="ClaimReference" />
+            <PropertyRef Name="AdhocOrPartyInd" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyTypeCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ClaimReference" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdhocOrPartyInd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PartyId" Type="int" />
+          <Property Name="AdhocPartyId" Type="int" />
+          <Property Name="PartyReference" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactName" Type="varchar" MaxLength="40" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="35" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="255" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.dbo.PartyTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PartyTypes">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdatedId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'interview.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Claims__CreatedI__10416098">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="CreatedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__LastUpda__113584D1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="LastUpdatedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__LossAdju__0F4D3C5F">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="LossAdjusterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__LossType__0E591826">
+          <End Role="LossTypes" Type="Self.LossTypes" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LossTypes">
+              <PropertyRef Name="LossTypeId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="LossTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fn_LocaltoUTC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+          <Parameter Name="LocalDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_GetActivityEnrichments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_GetClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClaimReference" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_GetLegacyActivityTimeline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClaimReference" Type="nvarchar" Mode="In" />
+          <Parameter Name="Filter" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Category" Type="nvarchar" Mode="In" />
+          <Parameter Name="Start" Type="datetime" Mode="In" />
+          <Parameter Name="End" Type="datetime" Mode="In" />
+          <Parameter Name="Skip" Type="int" Mode="In" />
+          <Parameter Name="Take" Type="int" Mode="In" />
+          <Parameter Name="SortDescending" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_GetLossTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_InsertClaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClaimReference" Type="nvarchar" Mode="In" />
+          <Parameter Name="LossAdjusterId" Type="int" Mode="In" />
+          <Parameter Name="LossDate" Type="datetime2" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="LossTypeId" Type="int" Mode="In" />
+          <Parameter Name="LossLocation" Type="nvarchar" Mode="In" />
+          <Parameter Name="PolicyNo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertLossType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LossTypeCode" Type="int" Mode="In" />
+          <Parameter Name="LossTypeDescription" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="InterviewModelStoreContainer">
+          <EntitySet Name="LossTypes" EntityType="Self.LossTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Activities" EntityType="Self.Activities" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Activities].[Id] AS [Id], 
+    [Activities].[ClaimReference] AS [ClaimReference], 
+    [Activities].[LegacyActivityId] AS [LegacyActivityId], 
+    [Activities].[ActivityTypeCode] AS [ActivityTypeCode], 
+    [Activities].[ActivityDetails] AS [ActivityDetails], 
+    [Activities].[ActivityDateTime] AS [ActivityDateTime], 
+    [Activities].[PartyId] AS [PartyId], 
+    [Activities].[PartyType] AS [PartyType], 
+    [Activities].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [Activities].[LastUpdatedId] AS [LastUpdatedId], 
+    [Activities].[CreatedDate] AS [CreatedDate], 
+    [Activities].[CreatedId] AS [CreatedId], 
+    [Activities].[DeletedDate] AS [DeletedDate], 
+    [Activities].[DeletedId] AS [DeletedId]
+    FROM [dbo].[Activities] AS [Activities]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Claims" EntityType="Self.Claims" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Claims].[Id] AS [Id], 
+    [Claims].[Reference] AS [Reference], 
+    [Claims].[LossAdjusterId] AS [LossAdjusterId], 
+    [Claims].[Policy] AS [Policy], 
+    [Claims].[LossDate] AS [LossDate], 
+    [Claims].[LossTypeId] AS [LossTypeId], 
+    [Claims].[LossLoc] AS [LossLoc], 
+    [Claims].[Closed] AS [Closed], 
+    [Claims].[ClosedDate] AS [ClosedDate], 
+    [Claims].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [Claims].[LastUpdatedId] AS [LastUpdatedId], 
+    [Claims].[CreatedDate] AS [CreatedDate], 
+    [Claims].[CreatedId] AS [CreatedId]
+    FROM [dbo].[Claims] AS [Claims]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Email" EntityType="Self.Email" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Email].[Id] AS [Id], 
+    [Email].[LegacyActivityId] AS [LegacyActivityId], 
+    [Email].[RecipientTo] AS [RecipientTo], 
+    [Email].[Subject] AS [Subject], 
+    [Email].[BodyText] AS [BodyText], 
+    [Email].[SentBy] AS [SentBy], 
+    [Email].[SentTime] AS [SentTime], 
+    [Email].[PartyTypeCode] AS [PartyTypeCode]
+    FROM [dbo].[Email] AS [Email]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FileActivityLinks" EntityType="Self.FileActivityLinks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FileActivityLinks].[Id] AS [Id], 
+    [FileActivityLinks].[FileId] AS [FileId], 
+    [FileActivityLinks].[ActivityId] AS [ActivityId], 
+    [FileActivityLinks].[LegacyActivityId] AS [LegacyActivityId], 
+    [FileActivityLinks].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [FileActivityLinks].[LastUpdatedId] AS [LastUpdatedId], 
+    [FileActivityLinks].[CreatedDate] AS [CreatedDate], 
+    [FileActivityLinks].[CreatedId] AS [CreatedId], 
+    [FileActivityLinks].[DeletedDate] AS [DeletedDate], 
+    [FileActivityLinks].[DeletedId] AS [DeletedId]
+    FROM [dbo].[FileActivityLinks] AS [FileActivityLinks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Files" EntityType="Self.Files" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Files].[Id] AS [Id], 
+    [Files].[PublicId] AS [PublicId], 
+    [Files].[FileName] AS [FileName], 
+    [Files].[BlobName] AS [BlobName], 
+    [Files].[Description] AS [Description], 
+    [Files].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [Files].[LastUpdatedId] AS [LastUpdatedId], 
+    [Files].[CreatedDate] AS [CreatedDate], 
+    [Files].[CreatedId] AS [CreatedId], 
+    [Files].[DeletedDate] AS [DeletedDate], 
+    [Files].[DeletedId] AS [DeletedId]
+    FROM [dbo].[Files] AS [Files]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LegacyActivities" EntityType="Self.LegacyActivities" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LegacyActivities].[ClaimReference] AS [ClaimReference], 
+    [LegacyActivities].[Id] AS [Id], 
+    [LegacyActivities].[ActivityDate] AS [ActivityDate], 
+    [LegacyActivities].[CategoryInd] AS [CategoryInd], 
+    [LegacyActivities].[CompletedBy] AS [CompletedBy], 
+    [LegacyActivities].[AdhocOrPartyInd] AS [AdhocOrPartyInd], 
+    [LegacyActivities].[PartyId] AS [PartyId], 
+    [LegacyActivities].[AdhocPartyId] AS [AdhocPartyId], 
+    [LegacyActivities].[TypeCode] AS [TypeCode], 
+    [LegacyActivities].[Detail] AS [Detail], 
+    [LegacyActivities].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [LegacyActivities].[LastUpdatedId] AS [LastUpdatedId], 
+    [LegacyActivities].[CreatedDate] AS [CreatedDate], 
+    [LegacyActivities].[CreatedId] AS [CreatedId], 
+    [LegacyActivities].[DeletedDate] AS [DeletedDate], 
+    [LegacyActivities].[DeletedId] AS [DeletedId]
+    FROM [dbo].[LegacyActivities] AS [LegacyActivities]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LegacyActivityCategories" EntityType="Self.LegacyActivityCategories" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LegacyActivityCategories].[Code] AS [Code], 
+    [LegacyActivityCategories].[Description] AS [Description], 
+    [LegacyActivityCategories].[Active] AS [Active], 
+    [LegacyActivityCategories].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [LegacyActivityCategories].[LastUpdatedId] AS [LastUpdatedId], 
+    [LegacyActivityCategories].[CreatedDate] AS [CreatedDate], 
+    [LegacyActivityCategories].[CreatedId] AS [CreatedId]
+    FROM [dbo].[LegacyActivityCategories] AS [LegacyActivityCategories]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LegacyActivityTypes" EntityType="Self.LegacyActivityTypes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LegacyActivityTypes].[Code] AS [Code], 
+    [LegacyActivityTypes].[CategoryCode] AS [CategoryCode], 
+    [LegacyActivityTypes].[Description] AS [Description], 
+    [LegacyActivityTypes].[Active] AS [Active], 
+    [LegacyActivityTypes].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [LegacyActivityTypes].[LastUpdatedId] AS [LastUpdatedId], 
+    [LegacyActivityTypes].[CreatedDate] AS [CreatedDate], 
+    [LegacyActivityTypes].[CreatedId] AS [CreatedId]
+    FROM [dbo].[LegacyActivityTypes] AS [LegacyActivityTypes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PartyClaimRole" EntityType="Self.PartyClaimRole" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PartyClaimRole].[Id] AS [Id], 
+    [PartyClaimRole].[PartyTypeCode] AS [PartyTypeCode], 
+    [PartyClaimRole].[ClaimReference] AS [ClaimReference], 
+    [PartyClaimRole].[AdhocOrPartyInd] AS [AdhocOrPartyInd], 
+    [PartyClaimRole].[PartyId] AS [PartyId], 
+    [PartyClaimRole].[AdhocPartyId] AS [AdhocPartyId], 
+    [PartyClaimRole].[PartyReference] AS [PartyReference], 
+    [PartyClaimRole].[ContactName] AS [ContactName], 
+    [PartyClaimRole].[Telephone] AS [Telephone], 
+    [PartyClaimRole].[EmailAddress] AS [EmailAddress], 
+    [PartyClaimRole].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [PartyClaimRole].[LastUpdatedId] AS [LastUpdatedId], 
+    [PartyClaimRole].[CreatedDate] AS [CreatedDate], 
+    [PartyClaimRole].[CreatedId] AS [CreatedId]
+    FROM [dbo].[PartyClaimRole] AS [PartyClaimRole]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PartyTypes" EntityType="Self.PartyTypes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PartyTypes].[Code] AS [Code], 
+    [PartyTypes].[Description] AS [Description], 
+    [PartyTypes].[Active] AS [Active], 
+    [PartyTypes].[LastUpdatedDate] AS [LastUpdatedDate], 
+    [PartyTypes].[LastUpdatedId] AS [LastUpdatedId], 
+    [PartyTypes].[CreatedDate] AS [CreatedDate], 
+    [PartyTypes].[CreatedId] AS [CreatedId]
+    FROM [dbo].[PartyTypes] AS [PartyTypes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Claims__CreatedI__10416098" Association="Self.FK__Claims__CreatedI__10416098">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__LastUpda__113584D1" Association="Self.FK__Claims__LastUpda__113584D1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__LossAdju__0F4D3C5F" Association="Self.FK__Claims__LossAdju__0F4D3C5F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__LossType__0E591826" Association="Self.FK__Claims__LossType__0E591826">
+            <End Role="LossTypes" EntitySet="LossTypes" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InterviewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LossType">
+          <Key>
+            <PropertyRef Name="LossTypeId" />
+          </Key>
+          <Property Name="LossTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LossTypeCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LossTypeDescription" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Claims" Relationship="Self.FK__Claims__LossType__0E591826" FromRole="LossTypes" ToRole="Claims" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Claims" Relationship="Self.FK__Claims__CreatedI__10416098" FromRole="Users" ToRole="Claims" />
+          <NavigationProperty Name="Claims1" Relationship="Self.FK__Claims__LastUpda__113584D1" FromRole="Users" ToRole="Claims" />
+          <NavigationProperty Name="Claims2" Relationship="Self.FK__Claims__LossAdju__0F4D3C5F" FromRole="Users" ToRole="Claims" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ClaimReference" />
+            <PropertyRef Name="ActivityTypeCode" />
+            <PropertyRef Name="ActivityDetails" />
+            <PropertyRef Name="ActivityDateTime" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LegacyActivityId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityTypeCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityDetails" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityDateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PartyId" Type="Int32" />
+          <Property Name="PartyType" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="7" />
+          <Property Name="DeletedId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Claim">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Reference" />
+            <PropertyRef Name="LossAdjusterId" />
+            <PropertyRef Name="LossDate" />
+            <PropertyRef Name="LossTypeId" />
+            <PropertyRef Name="Closed" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LossAdjusterId" Type="Int32" Nullable="false" />
+          <Property Name="Policy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LossDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LossTypeId" Type="Int32" Nullable="false" />
+          <Property Name="LossLoc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Closed" Type="Boolean" Nullable="false" />
+          <Property Name="ClosedDate" Type="DateTime" Precision="7" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LossType" Relationship="Self.FK__Claims__LossType__0E591826" FromRole="Claims" ToRole="LossTypes" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Claims__CreatedI__10416098" FromRole="Claims" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK__Claims__LastUpda__113584D1" FromRole="Claims" ToRole="Users" />
+          <NavigationProperty Name="User2" Relationship="Self.FK__Claims__LossAdju__0F4D3C5F" FromRole="Claims" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="LegacyActivityId" />
+            <PropertyRef Name="SentBy" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LegacyActivityId" Type="Int32" Nullable="false" />
+          <Property Name="RecipientTo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="BodyText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SentBy" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SentTime" Type="DateTime" Precision="3" />
+          <Property Name="PartyTypeCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FileActivityLink">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="FileId" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityId" Type="Int32" />
+          <Property Name="LegacyActivityId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="7" />
+          <Property Name="DeletedId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PublicId" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="BlobName" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublicId" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BlobName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="7" />
+          <Property Name="DeletedId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="LegacyActivity">
+          <Key>
+            <PropertyRef Name="ClaimReference" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ActivityDate" />
+            <PropertyRef Name="CompletedBy" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="ClaimReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CategoryInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CompletedBy" Type="Int32" Nullable="false" />
+          <Property Name="AdhocOrPartyInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PartyId" Type="Int32" />
+          <Property Name="AdhocPartyId" Type="Int32" />
+          <Property Name="TypeCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="LegacyActivityCategory">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LegacyActivityType">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="CategoryCode" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CategoryCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartyClaimRole">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartyTypeCode" />
+            <PropertyRef Name="ClaimReference" />
+            <PropertyRef Name="AdhocOrPartyInd" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyTypeCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ClaimReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdhocOrPartyInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PartyId" Type="Int32" />
+          <Property Name="AdhocPartyId" Type="Int32" />
+          <Property Name="PartyReference" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartyType">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="LastUpdatedDate" />
+            <PropertyRef Name="LastUpdatedId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedId" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdatedId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK__Claims__LossType__0E591826">
+          <End Role="LossTypes" Type="Self.LossType" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LossTypes">
+              <PropertyRef Name="LossTypeId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="LossTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__CreatedI__10416098">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="CreatedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__LastUpda__113584D1">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="LastUpdatedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__LossAdju__0F4D3C5F">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="LossAdjusterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InterviewEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LossTypes" EntityType="Self.LossType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Activities" EntityType="Self.Activity" />
+          <EntitySet Name="Claims" EntityType="Self.Claim" />
+          <EntitySet Name="Emails" EntityType="Self.Email" />
+          <EntitySet Name="FileActivityLinks" EntityType="Self.FileActivityLink" />
+          <EntitySet Name="Files" EntityType="Self.File" />
+          <EntitySet Name="LegacyActivities" EntityType="Self.LegacyActivity" />
+          <EntitySet Name="LegacyActivityCategories" EntityType="Self.LegacyActivityCategory" />
+          <EntitySet Name="LegacyActivityTypes" EntityType="Self.LegacyActivityType" />
+          <EntitySet Name="PartyClaimRoles" EntityType="Self.PartyClaimRole" />
+          <EntitySet Name="PartyTypes" EntityType="Self.PartyType" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <AssociationSet Name="FK__Claims__LossType__0E591826" Association="Self.FK__Claims__LossType__0E591826">
+            <End Role="LossTypes" EntitySet="LossTypes" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__CreatedI__10416098" Association="Self.FK__Claims__CreatedI__10416098">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__LastUpda__113584D1" Association="Self.FK__Claims__LastUpda__113584D1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__LossAdju__0F4D3C5F" Association="Self.FK__Claims__LossAdju__0F4D3C5F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(InterviewModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(InterviewModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="usp_GetActivityEnrichments" />
+          <FunctionImport Name="usp_GetClaim">
+            <Parameter Name="ClaimReference" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetLegacyActivityTimeline">
+            <Parameter Name="ClaimReference" Mode="In" Type="String" />
+            <Parameter Name="Filter" Mode="In" Type="String" />
+            <Parameter Name="Category" Mode="In" Type="String" />
+            <Parameter Name="Start" Mode="In" Type="DateTime" />
+            <Parameter Name="End" Mode="In" Type="DateTime" />
+            <Parameter Name="Skip" Mode="In" Type="Int32" />
+            <Parameter Name="Take" Mode="In" Type="Int32" />
+            <Parameter Name="SortDescending" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetLossTypes" />
+          <FunctionImport Name="usp_InsertClaim">
+            <Parameter Name="ClaimReference" Mode="In" Type="String" />
+            <Parameter Name="LossAdjusterId" Mode="In" Type="Int32" />
+            <Parameter Name="LossDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="LossTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="LossLocation" Mode="In" Type="String" />
+            <Parameter Name="PolicyNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertLossType">
+            <Parameter Name="LossTypeCode" Mode="In" Type="Int32" />
+            <Parameter Name="LossTypeDescription" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InterviewModelStoreContainer" CdmEntityContainer="InterviewEntities">
+          <EntitySetMapping Name="LossTypes">
+            <EntityTypeMapping TypeName="InterviewModel.LossType">
+              <MappingFragment StoreEntitySet="LossTypes">
+                <ScalarProperty Name="LossTypeId" ColumnName="LossTypeId" />
+                <ScalarProperty Name="LossTypeCode" ColumnName="LossTypeCode" />
+                <ScalarProperty Name="LossTypeDescription" ColumnName="LossTypeDescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="InterviewModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="InterviewModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="InterviewModel.Activity">
+              <MappingFragment StoreEntitySet="Activities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClaimReference" ColumnName="ClaimReference" />
+                <ScalarProperty Name="LegacyActivityId" ColumnName="LegacyActivityId" />
+                <ScalarProperty Name="ActivityTypeCode" ColumnName="ActivityTypeCode" />
+                <ScalarProperty Name="ActivityDetails" ColumnName="ActivityDetails" />
+                <ScalarProperty Name="ActivityDateTime" ColumnName="ActivityDateTime" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="PartyType" ColumnName="PartyType" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedId" ColumnName="DeletedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Claims">
+            <EntityTypeMapping TypeName="InterviewModel.Claim">
+              <MappingFragment StoreEntitySet="Claims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="LossAdjusterId" ColumnName="LossAdjusterId" />
+                <ScalarProperty Name="Policy" ColumnName="Policy" />
+                <ScalarProperty Name="LossDate" ColumnName="LossDate" />
+                <ScalarProperty Name="LossTypeId" ColumnName="LossTypeId" />
+                <ScalarProperty Name="LossLoc" ColumnName="LossLoc" />
+                <ScalarProperty Name="Closed" ColumnName="Closed" />
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="InterviewModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LegacyActivityId" ColumnName="LegacyActivityId" />
+                <ScalarProperty Name="RecipientTo" ColumnName="RecipientTo" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="BodyText" ColumnName="BodyText" />
+                <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+                <ScalarProperty Name="SentTime" ColumnName="SentTime" />
+                <ScalarProperty Name="PartyTypeCode" ColumnName="PartyTypeCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileActivityLinks">
+            <EntityTypeMapping TypeName="InterviewModel.FileActivityLink">
+              <MappingFragment StoreEntitySet="FileActivityLinks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="LegacyActivityId" ColumnName="LegacyActivityId" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedId" ColumnName="DeletedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="InterviewModel.File">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PublicId" ColumnName="PublicId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="BlobName" ColumnName="BlobName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedId" ColumnName="DeletedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LegacyActivities">
+            <EntityTypeMapping TypeName="InterviewModel.LegacyActivity">
+              <MappingFragment StoreEntitySet="LegacyActivities">
+                <ScalarProperty Name="ClaimReference" ColumnName="ClaimReference" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="CategoryInd" ColumnName="CategoryInd" />
+                <ScalarProperty Name="CompletedBy" ColumnName="CompletedBy" />
+                <ScalarProperty Name="AdhocOrPartyInd" ColumnName="AdhocOrPartyInd" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="AdhocPartyId" ColumnName="AdhocPartyId" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedId" ColumnName="DeletedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LegacyActivityCategories">
+            <EntityTypeMapping TypeName="InterviewModel.LegacyActivityCategory">
+              <MappingFragment StoreEntitySet="LegacyActivityCategories">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LegacyActivityTypes">
+            <EntityTypeMapping TypeName="InterviewModel.LegacyActivityType">
+              <MappingFragment StoreEntitySet="LegacyActivityTypes">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartyClaimRoles">
+            <EntityTypeMapping TypeName="InterviewModel.PartyClaimRole">
+              <MappingFragment StoreEntitySet="PartyClaimRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PartyTypeCode" ColumnName="PartyTypeCode" />
+                <ScalarProperty Name="ClaimReference" ColumnName="ClaimReference" />
+                <ScalarProperty Name="AdhocOrPartyInd" ColumnName="AdhocOrPartyInd" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="AdhocPartyId" ColumnName="AdhocPartyId" />
+                <ScalarProperty Name="PartyReference" ColumnName="PartyReference" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartyTypes">
+            <EntityTypeMapping TypeName="InterviewModel.PartyType">
+              <MappingFragment StoreEntitySet="PartyTypes">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedId" ColumnName="LastUpdatedId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedId" ColumnName="CreatedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="InterviewModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="InterviewModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="InterviewModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="InterviewModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="InterviewModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InterviewModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="InterviewModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InterviewModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="InterviewModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="InterviewModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="usp_GetActivityEnrichments" FunctionName="InterviewModel.Store.usp_GetActivityEnrichments" />
+          <FunctionImportMapping FunctionImportName="usp_GetClaim" FunctionName="InterviewModel.Store.usp_GetClaim" />
+          <FunctionImportMapping FunctionImportName="usp_GetLegacyActivityTimeline" FunctionName="InterviewModel.Store.usp_GetLegacyActivityTimeline" />
+          <FunctionImportMapping FunctionImportName="usp_GetLossTypes" FunctionName="InterviewModel.Store.usp_GetLossTypes" />
+          <FunctionImportMapping FunctionImportName="usp_InsertClaim" FunctionName="InterviewModel.Store.usp_InsertClaim" />
+          <FunctionImportMapping FunctionImportName="usp_InsertLossType" FunctionName="InterviewModel.Store.usp_InsertLossType" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
